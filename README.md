@@ -1,4 +1,4 @@
-<p style="font-size:22px;">Instalily AI Chatbot Project 🚀</p>
+## Instalily AI Chatbot Project 🚀
 
 Welcome to the Instalily AI Chatbot project! This repository contains both the frontend and backend codebases for the application.
 
@@ -15,44 +15,58 @@ Before running the project, ensure you have the following software installed on 
 ## 📦 Setup Instructions
 Follow the steps below to set up the project in your local environment:
 
-## Setup Instructions
-
 <div style="border: 2px solid #e7e7e7; padding: 10px; margin-bottom: 10px; border-radius: 5px; background-color: #f9f9f9;">
 <strong>Step 1:</strong> Clone the repository
-<br>
+<br><br>
 <code>git clone [repository_url]</code>
 </div>
 
+
 <div style="border: 2px solid #e7e7e7; padding: 10px; margin-bottom: 10px; border-radius: 5px; background-color: #f9f9f9;">
 <strong>Step 2:</strong> Navigate to the project directory
-<br>
+<br><br>
 <code>cd instalily-ai-chatbot</code>
 </div>
 
+
 <div style="border: 2px solid #e7e7e7; padding: 10px; margin-bottom: 10px; border-radius: 5px; background-color: #f9f9f9;">
 <strong>Step 3:</strong> Activate the virtual environment
-<br>
-For MacOS/Linux: <code>source .instalily/bin/activate</code><br>
-For Windows: <code>.instalily\Scripts\activate</code>
+<br><br>
+For MacOS/Linux: <code>source .env/bin/activate</code><br>
+For Windows: <code>.env\Scripts\activate</code>
 </div>
 
-<div style="border: 2px solid #e7e7e7; padding: 10px; margin-bottom: 10px; border-radius: 5px; background-color: #f9f9f9;">
-<strong>Step 4:</strong> Install backend dependencies
-<br>
-<code>cd backend</code><br>
-<code>pip install -r requirements.txt</code>
-</div>
 
 <div style="border: 2px solid #e7e7e7; padding: 10px; margin-bottom: 10px; border-radius: 5px; background-color: #f9f9f9;">
-<strong>Step 5:</strong> Install frontend dependencies
+<strong>Step 4:</strong> Install frontend dependencies
 <br>
 <code>cd frontend</code><br>
 <code>npm install</code>
 </div>
 
 
+<div style="border: 2px solid #e7e7e7; padding: 10px; margin-bottom: 10px; border-radius: 5px; background-color: #f9f9f9;">
+<strong>Step 5:</strong> Navigate to backend directory
+<br><br>
+<code>cd backend</code><br>
+</div>
 
+<div style="border: 2px solid #e7e7e7; padding: 10px; margin-bottom: 10px; border-radius: 5px; background-color: #f9f9f9;">
+<strong>Step 5:</strong> Run frontend
+<br><br>
+<code>npm start</code><br>
+</div>
 
+<div style="border: 2px solid #e7e7e7; padding: 10px; margin-bottom: 10px; border-radius: 5px; background-color: #f9f9f9;">
+<strong>Step 5:</strong> Run backend
+<br><br>
+<code>flask run</code><br>
+</div>
 
+## 🌐 Access the Application
 
+Once both servers are up and running, you can view the application in your browser by navigating to: http://localhost:3000
 
+## 📜 License
+
+This project is licensed under the terms of the [License](LICENSE) file.
