@@ -43,7 +43,7 @@ For Windows: <code>.env\Scripts\activate</code><br><br>
 <strong>Step 4:</strong> Install frontend dependencies
 <br><br>
 <code>cd frontend</code><br>
-<code>npm install</code><br>
+<code>npm install</code><br><br>
 </div>
 
 
