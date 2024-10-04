@@ -96,9 +96,6 @@ class DishwasherRefrigeratorSpider(scrapy.Spider):
         # Generate embeddings using OpenAI's embedding model
         embedding = self.get_openai_embedding(scraped_text)
 
-       # # Debug: Print scraped text and embedding
-       # print(f"Generated embedding: {embedding[:5]}...")  # Print only the first 5 dimensions for brevity
-
         # Store embeddings and metadata in Pinecone
         metadata = {
             'model_id': response.meta['model_id'],
@@ -116,12 +113,6 @@ class DishwasherRefrigeratorSpider(scrapy.Spider):
 
         response = self.index.upsert([(part_id, embedding, metadata)])
         print(f"Pinecone Upsert Response: {response}")
-
-   # def get_openai_embedding(self, text):
-   #     """Generate embeddings using OpenAI's text-embedding-ada-002 model."""
-   #     response = openai.embeddings.create(input=[text], model="text-embedding-ada-002")
-   #     embedding = response.data[0].embedding
-   #     return embedding
 
     def get_openai_embedding(self, text):
         """Generate embeddings using OpenAI's text-embedding-ada-002 model."""
