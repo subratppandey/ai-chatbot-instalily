@@ -42,7 +42,7 @@ For Windows: <code>.env\Scripts\activate</code><br><br>
 <div style="border: 2px solid #e7e7e7; padding: 10px; margin-bottom: 10px; border-radius: 5px; background-color: #f9f9f9;">
 <strong>Step 4:</strong> Install frontend dependencies
 <br><br>
-<code>cd frontend</code><br><br>
+<code>cd frontend</code><br>
 <code>npm install</code><br>
 </div>
 
@@ -60,7 +60,7 @@ For Windows: <code>.env\Scripts\activate</code><br><br>
 </div>
 
 <div style="border: 2px solid #e7e7e7; padding: 10px; margin-bottom: 10px; border-radius: 5px; background-color: #f9f9f9;">
-<strong>Step 5:</strong> Run backend
+<strong>Step 7:</strong> Run backend
 <br><br>
 <code>flask run</code><br><br>
 </div>
