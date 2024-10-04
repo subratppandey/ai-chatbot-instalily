@@ -1,25 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 * {
-  font-family: "Inter", sans-serif;
-  font-size: 14px;
+ font-family: "Inter", sans-serif;
+ font-size: 15px;
 }
 
-.App {
-  background-color: white;
+.chat-interface {
+ height: 100vh;
+ display: flex;
+ flex-direction: column;
+ background: linear-gradient(135deg, rgb(243,192,76), rgb(51,118,120));
 }
 
 .heading {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(255, 255, 255); 
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  display: flex;
-  font-weight: 700;
-  font-size: 16px;
-  justify-content: center;
-  align-items: center;
-  height: 60px;
+ font-size: 24px;
+ font-weight: bold;
+ color: #1b3875;
+ text-align: center;
+ margin: 2px 0;
+ text-transform: uppercase;
+ letter-spacing: 2px;
+ box-shadow: 0px 4px 2px -2px gray;
+ padding-top: 2px;
 }
