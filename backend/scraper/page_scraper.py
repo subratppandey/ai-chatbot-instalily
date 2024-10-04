@@ -78,7 +78,7 @@ class GeneralPagesSpider(scrapy.Spider):
         # Remove excessive whitespace and newlines
         body_text = re.sub(r'\s+', ' ', body_text).strip()
       
-       return body_text
+        return body_text
 
    def scrape_general_page(self, response):
        """Scrape general content from any page."""
