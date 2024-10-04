@@ -80,8 +80,8 @@ class GeneralPagesSpider(scrapy.Spider):
       
         return body_text
 
-   def scrape_general_page(self, response):
-       """Scrape general content from any page."""
+    def scrape_general_page(self, response):
+        """Scrape general content from any page."""
         page_title = response.css('title::text').get().strip()
         body_text = self.clean_body_text(response)
 
@@ -104,13 +104,13 @@ class GeneralPagesSpider(scrapy.Spider):
 
         self.index.upsert([(response.url, embedding, metadata)])
 
-   def get_openai_embedding(self, text):
-       """Generate embeddings using OpenAI's text-embedding-ada-002 model."""
-       try:
+    def get_openai_embedding(self, text):
+        """Generate embeddings using OpenAI's text-embedding-ada-002 model."""
+        try:
             response = openai.embeddings.create(input=[text], model="text-embedding-ada-002")
             embedding = response.data[0].embedding
             return embedding
-       except Exception as e:
+        except Exception as e:
             self.logger.error(f"Error generating embedding: {e}")
             return None
 
