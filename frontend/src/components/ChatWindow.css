@@ -1,0 +1,111 @@
+@import "rsuite/dist/rsuite.css";
+
+.messages-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2px;
+  font-size: 16px;
+  margin-top: 60px; 
+  margin-bottom: 70px; 
+}
+
+.user-message-container,
+.assistant-message-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  margin: 4px 0;
+}
+
+.user-message-container {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+
+.assistant-message-container {
+  align-items: flex-start;
+}
+
+.message {
+  white-space: pre-line;
+  padding: 14px;
+  margin: 2px 0;
+  border-radius: 10px;
+  clear: both;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.user-message {
+  align-self: flex-end;
+  font-size: 13px;
+  background-color: #1b3875;
+  color: #ffffff;
+  border-top-right-radius: 0;
+  text-align: left;
+}
+
+.assistant-message {
+  align-self: flex-start;
+  background-color: #f6f6f6;
+  border-top-left-radius: 0;
+  color: #000000;
+  padding: 14px;
+  font-size: 13px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.input-area {
+  font-size: 15px;
+  padding: 10px;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  border-top: 1px solid #ccc;
+  background: #fff;
+  position: fixed;
+  width: calc(100% - 40px);
+}
+
+.input-area textarea {
+  font-size: 15px;
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  resize: none;
+  overflow-y: auto;
+  min-height: 200px;
+  max-height: 200px;
+  margin-right: 10px;
+}
+
+.input-area input {
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 13px;
+}
+
+.input-area button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #121212;
+  color: white;
+  cursor: pointer;
+  font-size: 13px;
+}
