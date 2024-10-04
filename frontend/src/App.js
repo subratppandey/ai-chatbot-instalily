@@ -1,17 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 import ChatWindow from "./components/ChatWindow";
 
 function App() {
-
   return (
-    <div className="App">
-      <div className="heading">
-        Instalily Case Study
-      </div>
-        <ChatWindow/>
-    </div>
-  );
+   <div className="chat-interface">
+     <div className="heading">
+       PartSelect AI-chatbot
+     </div>
+     <ChatWindow />
+   </div>
+ );
 }
 
 export default App;
