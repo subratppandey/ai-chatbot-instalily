@@ -62,7 +62,7 @@ For Windows: <code>.env\Scripts\activate</code><br><br>
 <div style="border: 2px solid #e7e7e7; padding: 10px; margin-bottom: 10px; border-radius: 5px; background-color: #f9f9f9;">
 <strong>Step 7:</strong> Run backend
 <br><br>
-<code>flask run</code><br><br>
+<code>flask run</code><br>
 </div>
 
 ## 🌐 Access the Application
