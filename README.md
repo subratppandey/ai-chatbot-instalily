@@ -17,52 +17,52 @@ Follow the steps below to set up the project in your local environment:
 
 <div style="border: 2px solid #e7e7e7; padding: 10px; margin-bottom: 10px; border-radius: 5px; background-color: #f9f9f9;">
 <strong>Step 1:</strong> Clone the repository
-<br>
+<br><br>
 <code>git clone [repository_url]</code>
-  <br>
+  <br><br>
 </div>
 
 
 <div style="border: 2px solid #e7e7e7; padding: 10px; margin-bottom: 10px; border-radius: 5px; background-color: #f9f9f9;">
 <strong>Step 2:</strong> Navigate to the project directory
-<br>
+<br><br>
 <code>cd instalily-ai-chatbot</code>
-  <br>
+  <br><br>
 </div>
 
 
 <div style="border: 2px solid #e7e7e7; padding: 10px; margin-bottom: 10px; border-radius: 5px; background-color: #f9f9f9;">
 <strong>Step 3:</strong> Activate the virtual environment
-<br>
-For MacOS/Linux: <code>source .env/bin/activate</code><br>
-For Windows: <code>.env\Scripts\activate</code><br>
+<br><br>
+For MacOS/Linux: <code>source .env/bin/activate</code><br><br>
+For Windows: <code>.env\Scripts\activate</code><br><br>
 </div>
 
 
 <div style="border: 2px solid #e7e7e7; padding: 10px; margin-bottom: 10px; border-radius: 5px; background-color: #f9f9f9;">
 <strong>Step 4:</strong> Install frontend dependencies
-<br>
-<code>cd frontend</code><br>
-<code>npm install</code>
+<br><br>
+<code>cd frontend</code><br><br>
+<code>npm install</code><br>
 </div>
 
 
 <div style="border: 2px solid #e7e7e7; padding: 10px; margin-bottom: 10px; border-radius: 5px; background-color: #f9f9f9;">
 <strong>Step 5:</strong> Navigate to backend directory
-<br>
-<code>cd backend</code><br>
+<br><br>
+<code>cd backend</code><br><br>
 </div>
 
 <div style="border: 2px solid #e7e7e7; padding: 10px; margin-bottom: 10px; border-radius: 5px; background-color: #f9f9f9;">
-<strong>Step 5:</strong> Run frontend
-<br>
-<code>npm start</code><br>
+<strong>Step 6:</strong> Run frontend
+<br><br>
+<code>npm start</code><br><br>
 </div>
 
 <div style="border: 2px solid #e7e7e7; padding: 10px; margin-bottom: 10px; border-radius: 5px; background-color: #f9f9f9;">
 <strong>Step 5:</strong> Run backend
 <br><br>
-<code>flask run</code><br>
+<code>flask run</code><br><br>
 </div>
 
 ## 🌐 Access the Application
