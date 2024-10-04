@@ -17,23 +17,25 @@ Follow the steps below to set up the project in your local environment:
 
 <div style="border: 2px solid #e7e7e7; padding: 10px; margin-bottom: 10px; border-radius: 5px; background-color: #f9f9f9;">
 <strong>Step 1:</strong> Clone the repository
-<br><br>
+<br>
 <code>git clone [repository_url]</code>
+  <br>
 </div>
 
 
 <div style="border: 2px solid #e7e7e7; padding: 10px; margin-bottom: 10px; border-radius: 5px; background-color: #f9f9f9;">
 <strong>Step 2:</strong> Navigate to the project directory
-<br><br>
+<br>
 <code>cd instalily-ai-chatbot</code>
+  <br>
 </div>
 
 
 <div style="border: 2px solid #e7e7e7; padding: 10px; margin-bottom: 10px; border-radius: 5px; background-color: #f9f9f9;">
 <strong>Step 3:</strong> Activate the virtual environment
-<br><br>
+<br>
 For MacOS/Linux: <code>source .env/bin/activate</code><br>
-For Windows: <code>.env\Scripts\activate</code>
+For Windows: <code>.env\Scripts\activate</code><br>
 </div>
 
 
@@ -47,13 +49,13 @@ For Windows: <code>.env\Scripts\activate</code>
 
 <div style="border: 2px solid #e7e7e7; padding: 10px; margin-bottom: 10px; border-radius: 5px; background-color: #f9f9f9;">
 <strong>Step 5:</strong> Navigate to backend directory
-<br><br>
+<br>
 <code>cd backend</code><br>
 </div>
 
 <div style="border: 2px solid #e7e7e7; padding: 10px; margin-bottom: 10px; border-radius: 5px; background-color: #f9f9f9;">
 <strong>Step 5:</strong> Run frontend
-<br><br>
+<br>
 <code>npm start</code><br>
 </div>
 
