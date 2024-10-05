@@ -8,7 +8,7 @@ load_dotenv()
 
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 PINECONE_HOST_URL = os.getenv("PINECONE_HOST_URL")
-PINECONE_INDEX_NAME = "143"
+PINECONE_INDEX_NAME = "150"
 
 # Initialize Pinecone client using the new Pinecone class
 pc = Pinecone(api_key=PINECONE_API_KEY, host_url=PINECONE_HOST_URL)
@@ -42,11 +42,29 @@ def get_relevant_context(query):
     # Query Pinecone for most similar chunks
 
     result = index.query(vector=[query_embedding], top_k=3, include_metadata=True)
+    print(result)
   
+    # context_list = [
+    #     f"Title: {match['metadata'].get('page_title', '')}\n"
+    #     f"URL: {match['metadata'].get('url', '')}\n"
+    #     f"Installation Video: {match['metadata'].get('video_link', 'No video available')}"
+    #     for match in result['matches']
+    # ]
+
+    # Extract all relevant fields and create the context for each match
     context_list = [
-        f"Title: {match['metadata'].get('page_title', '')}\n"
-        f"URL: {match['metadata'].get('url', '')}\n"
-        f"Installation Video: {match['metadata'].get('video_link', 'No video available')}"
+        f"Title: {match['metadata'].get('page_title', 'Not available')}\n"
+        f"URL: {match['metadata'].get('url', 'Not available')}\n"
+        f"Part Name: {match['metadata'].get('part_name', 'Not available')}\n"
+        f"Part Info: {match['metadata'].get('part_info', 'Not available')}\n"
+        f"Part Price: {match['metadata'].get('part_price', 'Not available')}\n"
+        f"Manufacturer Name: {match['metadata'].get('manufacturer_name', 'Not available')}\n"
+        f"Manufacturer Part Number: {match['metadata'].get('manufacturer_part_num', 'Not available')}\n"
+        f"Fixes: {match['metadata'].get('fixes', 'No fixes available')}\n"
+        f"Compatibility with Appliances: {match['metadata'].get('compatibility_with_appliances', 'Not available')}\n"
+        f"Compatibility with Brands: {match['metadata'].get('compatibility_with_brands', 'Not available')}\n"
+        f"Replaceable Parts: {match['metadata'].get('replace_parts', 'No replaceable parts available')}\n"
+        f"Installation Video: {match['metadata'].get('video_link', 'No video available')}\n"
         for match in result['matches']
     ]
   
@@ -54,3 +72,4 @@ def get_relevant_context(query):
     combined_context = "\n".join(context_list)
 
     return combined_context
+
