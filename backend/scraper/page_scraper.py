@@ -12,7 +12,7 @@ load_dotenv()
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 PINECONE_HOST_URL = os.getenv("PINECONE_HOST_URL")
-PINECONE_INDEX = '143'
+PINECONE_INDEX = '150'
 
 class GeneralPagesSpider(scrapy.Spider):
     name = "general_pages"

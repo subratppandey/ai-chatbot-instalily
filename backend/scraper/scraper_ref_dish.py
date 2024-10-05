@@ -5,13 +5,14 @@ import re
 from pinecone import Pinecone, ServerlessSpec
 from scrapy.crawler import CrawlerProcess
 from dotenv import load_dotenv
+import logging
 
 load_dotenv()
 
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 PINECONE_HOST_URL = os.getenv("PINECONE_HOST_URL")
-PINECONE_INDEX = '143'
+PINECONE_INDEX = '150'
 
 class DishwasherRefrigeratorSpider(scrapy.Spider):
     name = "dishwasher_refrigerator"
@@ -79,7 +80,11 @@ class DishwasherRefrigeratorSpider(scrapy.Spider):
         part_price = response.css('span[itemprop="price"] span.js-partPrice::text').get()
         if part_price is None:
             part_price = "N/A"
-        part_info = response.css('div[itemprop="description"]::text').get()
+        part_info = response.css('div[itemprop="description"]::text').get(default="").strip()
+
+        # Extract manufacturer details if available
+        manufacturer_part_num = response.css('span[itemprop="mpn"]::text').get()
+        manufacturer_name = response.css('span[itemprop="name"]::text').get()
 
         video = response.xpath("//div[@id='PartVideos']/following-sibling::div[1]//div/@data-yt-init").get()
 
@@ -88,10 +93,14 @@ class DishwasherRefrigeratorSpider(scrapy.Spider):
 
         # Additional troubleshooting information
         fixes = response.xpath('//div[@id="Troubleshooting"]/following-sibling::div[1]/div[1]/text()').get(default='').strip()
-        compatibility = response.xpath('//div[@id="Troubleshooting"]/following-sibling::div[1]/div[2]/text()').get(default='').strip()
+        compatibility_with_appliances = response.xpath('//div[@id="Troubleshooting"]/following-sibling::div[1]/div[2]/text()').get(default='').strip()
+        compatibility_with_brands = response.xpath('//div[@id="Troubleshooting"]/following-sibling::div[1]/div[3]/text()').get(default='').strip()
+        replace_parts = response.xpath('//div[@id="Troubleshooting"]/following-sibling::div[1]/div[4]/div[2]/text()').get(default='').strip()
 
-        # Aggregate text for embedding
-        scraped_text = f"{part_id} - {part_name} - {part_info}. Price: {part_price}. Fixes: {fixes}. Compatibility: {compatibility}. Video: {video_link}"
+        scraped_text = f"{part_id} - {part_name} - {part_info}. Price: {part_price}. Fixes: {fixes}. " \
+               f"Compatibility with appliances: {compatibility_with_appliances}. " \
+               f"Compatibility with brands: {compatibility_with_brands}. " \
+               f"Replaceable parts: {replace_parts}. Video: {video_link}"
 
         # Generate embeddings using OpenAI's embedding model
         embedding = self.get_openai_embedding(scraped_text)
@@ -102,15 +111,26 @@ class DishwasherRefrigeratorSpider(scrapy.Spider):
             'model_name': response.meta['model_name'],
             'appliance_type': response.meta['appliance_type'],
             'part_id': part_id,
+            'part_info': part_info,
             'part_name': part_name,
             'part_price': part_price,
             'url': response.url,
+            'fixes': fixes,
+            'compatibility_with_appliances': compatibility_with_appliances,
+            'compatibility_with_brands': compatibility_with_brands,
+            'replace_parts': replace_parts,
         }
 
        # Only add video_link if it's not None because Metadata can't be of null type
         if video_link:
             metadata['video_link'] = video_link
-
+        
+        # Include manufacturer information in metadata if available
+        if manufacturer_name:
+            metadata['manufacturer_name'] = manufacturer_name
+        if manufacturer_part_num:
+            metadata['manufacturer_part_num'] = manufacturer_part_num
+        
         response = self.index.upsert([(part_id, embedding, metadata)])
         print(f"Pinecone Upsert Response: {response}")
 
