@@ -12,7 +12,7 @@ class Conversation:
 
     def get_conversation(self):
         """Get the conversation history."""
-        return self.chat_history
+        return self.chat_history[-7:] # Get the last 7 messages for context, fewer if the history is smaller
 
     def clear_history(self):
         """Clear the conversation history."""
