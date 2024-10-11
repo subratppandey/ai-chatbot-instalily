@@ -47,17 +47,15 @@
  text-align: left;
 }
 
-
-.user-message {
- align-self: flex-end;
- font-size: 13px;
- background-color: #1b3875;
- color: #ffffff;
- border-top-right-radius: 0;
- text-align: left;
- max-width: 100%;
+.user-message-container .message {
+  align-self: flex-end;
+  font-size: 13px;
+  background-color: #1b3875; 
+  color: #ffffff; 
+  border-top-right-radius: 0;
+  text-align: left;
+  box-sizing: border-box;
 }
-
 
 .assistant-message {
  align-self: flex-start;
@@ -67,25 +65,27 @@
  padding: 14px;
  font-size: 13px;
  width: 100%;
- max-width: 75%;
+ max-width: 60%;
  box-sizing: border-box;
 }
-
 
 ::-webkit-scrollbar {
  display: none;
 }
 
-
 .default-message {
- color: black;
- font-size: 35px;
- font-weight: bold;
- text-align: center;
- margin-bottom: 15px;
- padding: 10px 0;
+  background-color: #f6f6f6; 
+  color: #000000; 
+  font-size: 13px; 
+  font-weight: 400; 
+  text-align: left; 
+  padding: 14px;
+  margin: 4px 0; 
+  border-radius: 10px; 
+  border-top-left-radius: 0;
+  max-width: 75%; 
+  box-sizing: border-box;
 }
-
 
 .input-area {
  position: fixed;
@@ -99,7 +99,6 @@
  border-top: none;
 }
 
-
 .input-area input {
  flex: 1;
  padding: 10px;
@@ -108,7 +107,6 @@
  border: 1px solid #ccc;
  font-size: 13px;
 }
-
 
 .input-area button {
  padding: 10px 20px;
@@ -120,7 +118,6 @@
  font-size: 13px;
 }
 
-
 /* Icon for copying the message */
 .copy-button {
  font-size: 20px;
@@ -129,14 +126,12 @@
  color: #888;
 }
 
-
 .copy-icon-container {
  display: flex;
  align-items: center;
  position: relative;
  margin-top: 10px;
 }
-
 
 .copied-notification {
  margin-left: 10px;
@@ -145,7 +140,6 @@
  opacity: 0;
  animation: fadeInOut 2s ease-in-out forwards;
 }
-
 
 @keyframes fadeInOut {
  0% {
