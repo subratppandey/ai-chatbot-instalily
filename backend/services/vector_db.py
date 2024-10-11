@@ -1,4 +1,5 @@
 import os
+import re
 from pinecone import Pinecone, ServerlessSpec
 from services.openai_client import get_openai_embedding
 from dotenv import load_dotenv
@@ -38,20 +39,27 @@ def get_relevant_context(query):
     if query_embedding is None:
         logging.error("Failed to generate an embedding. Invalid embedding for query.")
         raise ValueError("Invalid embedding for query")
-  
+
+    # Check for exact PartSelect number match using regex
+    part_select_match = re.search(r'\bPS\d+\b', query)
+    if part_select_match:
+        part_select_number = part_select_match.group(0)  # Extract the matched PartSelect number
+        print(f"Exact PartSelect number found: {part_select_number}")
+
+        # Fetch the exact match using the PartSelect number
+        exact_match_results = index.fetch(ids=[part_select_number])  # Fetching by ID instead of using the filter
+        if exact_match_results and 'vectors' in exact_match_results:
+            matches = exact_match_results['vectors'].values()  # Access the matched items
+            return format_context(matches)
+    
     # Query Pinecone for most similar chunks
 
-    result = index.query(vector=[query_embedding], top_k=3, include_metadata=True)
-    print(result)
-  
-    # context_list = [
-    #     f"Title: {match['metadata'].get('page_title', '')}\n"
-    #     f"URL: {match['metadata'].get('url', '')}\n"
-    #     f"Installation Video: {match['metadata'].get('video_link', 'No video available')}"
-    #     for match in result['matches']
-    # ]
+    result = index.query(vector=query_embedding, top_k=3, include_metadata=True)
+    return format_context(result['matches'])
 
     # Extract all relevant fields and create the context for each match
+
+def format_context(matches):
     context_list = [
         f"Title: {match['metadata'].get('page_title', 'Not available')}\n"
         f"URL: {match['metadata'].get('url', 'Not available')}\n"
@@ -65,11 +73,13 @@ def get_relevant_context(query):
         f"Compatibility with Brands: {match['metadata'].get('compatibility_with_brands', 'Not available')}\n"
         f"Replaceable Parts: {match['metadata'].get('replace_parts', 'No replaceable parts available')}\n"
         f"Installation Video: {match['metadata'].get('video_link', 'No video available')}\n"
-        for match in result['matches']
-    ]
+        for match in matches
+        ]
   
     # Combine all the context chunks
     combined_context = "\n".join(context_list)
 
     return combined_context
+
+
 
