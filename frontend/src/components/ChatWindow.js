@@ -3,19 +3,18 @@ import "./ChatWindow.css";
 import { getAIMessage } from "../api/api";
 import { marked } from "marked";
 import { FiCopy } from "react-icons/fi"; 
+import { FiTrash } from "react-icons/fi";
+
+
 
 function ChatWindow() {
   const defaultMessage = [{
     role: "assistant",
     isDefault: true,
-    content: "PartSelect's AI-powered chatbot welcomes you. Please ask specific questions related to Dishwashers and Refrigerators, and we would be glad to help! For more details about products, please visit our website: https://www.partselect.com/"
+    content: `Hi there! 👋 I'm Patrick, PartSelect's AI-powered assistant. I am ready to answer all your questions related to Dishwasher and Refrigerator. Whether you're troubleshooting, looking for parts or specific models, or need some quick tips, ask away! Need more details? Visit our website at <a href="https://www.partselect.com" target="_blank" rel="noopener noreferrer">PartSelect</a>.`
   }];
 
-  const [messages, setMessages] = useState(() => {
-    const savedMessages = localStorage.getItem('chatMessages');
-    return savedMessages ? JSON.parse(savedMessages) : defaultMessage;
-  });
-
+  const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [isSending, setIsSending] = useState(false); 
   const [copiedMessageIndex, setCopiedMessageIndex] = useState(null);
@@ -47,10 +46,17 @@ function ChatWindow() {
   };
 
   useEffect(() => {
-    localStorage.setItem('chatMessages', JSON.stringify(messages));
-    scrollToBottom();
-  }, [messages]);
-
+    // Only add the default message if the message list is empty and the user has not seen the default message before in this session
+    if (messages.length === 0) {
+      const timer = setTimeout(() => {
+        setMessages([...defaultMessage]);
+      }, 1800);
+  
+      return () => clearTimeout(timer); // Cleanup the timer when component unmounts
+    }
+  }, [messages, defaultMessage]);
+    
+  
   // Show or hide the scroll button based on the scroll position and content height
   useEffect(() => {
     const handleScroll = () => {
@@ -64,11 +70,11 @@ function ChatWindow() {
 
         // Determine when to show "Scroll to Bottom" or "Scroll to Top"
         if (chatContainer.scrollTop === 0) {
-          setScrollDirection('bottom'); // Show "Scroll to Bottom" when at the top
+          setScrollDirection('bottom');
         } else if (chatContainer.scrollTop + chatContainer.clientHeight < chatContainer.scrollHeight - 200) {
-          setScrollDirection('top'); // Show "Scroll to Top" when scrolled down
+          setScrollDirection('top'); 
         } else {
-          setShowScrollButton(false); // Hide button when at the bottom
+          setShowScrollButton(false);
         }
       } else {
         setShowScrollButton(false); // Don't show the button if there isn't enough content to scroll
@@ -115,8 +121,7 @@ function ChatWindow() {
 
   // Clear chat history and local storage
   const handleClearChat = () => {
-    localStorage.removeItem('chatMessages');
-    setMessages(defaultMessage);
+    setMessages([]);
   };
 
   return (
@@ -129,7 +134,7 @@ function ChatWindow() {
               <span> PartSelect is typing...</span>
             </div>
           ) : (
-            <div className={`message ${message.isDefault ? 'default-message' : `${message.role}-message`}`}>
+            <div className={`message ${message.role === 'user' ? 'user-message' : 'assistant-message'}`}>
               <div dangerouslySetInnerHTML={{__html: marked(message.content).replace(/<p>|<\/p>/g, "")}}></div>
               
               {!message.isDefault && message.role === "assistant" && (
@@ -168,7 +173,7 @@ function ChatWindow() {
 
         {/* Clear Chat Button */}
         <button className="clear-chat-button" onClick={handleClearChat}>
-          Clear Chat
+          <FiTrash />
         </button>
       </div>
     </div>
